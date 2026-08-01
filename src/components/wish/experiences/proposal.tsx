@@ -14,15 +14,15 @@ export function ProposalExperience({ data }: Props) {
 
   const stages = [
     { id: "start", title: "A Special Moment" },
-    { id: "opening", text: content.openingText || "There's something I've wanted to tell you..." },
-    { id: "feelings", text: content.feelingsText || "You became someone very special to me." },
-    { id: "memories", text: content.memoriesText || "Every moment with you is precious." },
-    { id: "reasons", text: content.reasonsText || "You make my world complete." },
-    { id: "letter", text: content.letterText || "I love you more than words can say." },
-    { id: "future", text: content.futureText || "I can't wait to spend forever with you." },
+    { id: "opening", text: content?.openingText || "There's something I've wanted to tell you..." },
+    { id: "feelings", text: content?.feelingsText || "You became someone very special to me." },
+    { id: "memories", text: content?.memoriesText || "Every moment with you is precious." },
+    { id: "reasons", text: content?.reasonsText || "You make my world complete." },
+    { id: "letter", text: content?.letterText || "I love you more than words can say." },
+    { id: "future", text: content?.futureText || "I can't wait to spend forever with you." },
     { id: "buildup", text: "There's one more thing..." },
-    { id: "ring", text: content.finalQuestion || "Will You Be Mine? ❤️" },
-    { id: "celebration", text: content.finalMessage || "You made me the happiest person alive." },
+    { id: "ring", text: content?.finalQuestion || "Will You Be Mine? ❤️" },
+    { id: "celebration", text: content?.finalMessage || "You made me the happiest person alive." },
   ];
 
   useEffect(() => {
@@ -56,7 +56,7 @@ export function ProposalExperience({ data }: Props) {
         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="text-center z-10 px-6">
           <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 2, repeat: Infinity }} className="text-6xl mb-6">💍</motion.div>
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">A Special Moment</h1>
-          <p className="text-white/60 text-lg mb-8">{sender.name} has prepared something beautiful for you, {recipient.name}</p>
+          <p className="text-white/60 text-lg mb-8">{sender?.name || "Someone"} has prepared something beautiful for you, {recipient?.name || "Love"}</p>
           <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={nextStage}
             className="px-8 py-4 rounded-2xl bg-gradient-to-r from-pink-600 to-red-600 text-white font-semibold text-lg shadow-lg shadow-pink-500/25">Begin Experience ✨</motion.button>
         </motion.div>
@@ -105,7 +105,7 @@ export function ProposalExperience({ data }: Props) {
           <AnimatePresence>
             {ringOpen && (
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1 }}>
-                <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">{content.finalQuestion || "Will You Be Mine? ❤️"}</h2>
+                <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">{content?.finalQuestion || "Will You Be Mine? ❤️"}</h2>
                 {!answered ? (
                   <div className="flex gap-4 justify-center">
                     <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => handleAnswer("yes")}
@@ -133,7 +133,7 @@ export function ProposalExperience({ data }: Props) {
       <div className="min-h-screen bg-gradient-to-b from-[#1a0505] via-[#2d0a1a] to-[#1a0505] flex items-center justify-center relative overflow-hidden">
         {[...Array(50)].map((_, i) => (
           <motion.div key={i} className="absolute text-2xl" style={{ left: `${Math.random() * 100}%`, top: -50 }}
-            animate={{ y: [0, window.innerHeight + 100], x: [0, Math.sin(i) * 100], rotate: [0, 720] }}
+            animate={{ y: [0, 1000], x: [0, Math.sin(i) * 100], rotate: [0, 720] }}
             transition={{ duration: 4 + Math.random() * 4, repeat: Infinity, delay: Math.random() * 3 }}>
             {["🎉", "💖", "✨", "🌹", "💍"][i % 5]}
           </motion.div>
@@ -141,8 +141,8 @@ export function ProposalExperience({ data }: Props) {
         <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="text-center z-10 px-6">
           <motion.div animate={{ rotate: [0, 10, -10, 0] }} transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 1 }} className="text-7xl mb-6">🎉</motion.div>
           <h1 className="text-4xl font-bold text-white mb-4">Celebration!</h1>
-          <p className="text-xl text-white/80 max-w-md mx-auto whitespace-pre-line">{content.finalMessage || "You made me the happiest person alive."}</p>
-          <div className="mt-8 text-white/40 text-sm">From {sender.name} with ❤️</div>
+          <p className="text-xl text-white/80 max-w-md mx-auto whitespace-pre-line">{content?.finalMessage || "You made me the happiest person alive."}</p>
+          <div className="mt-8 text-white/40 text-sm">From {sender?.name || "Someone"} with ❤️</div>
         </motion.div>
       </div>
     );
@@ -161,9 +161,9 @@ export function ProposalExperience({ data }: Props) {
       <motion.div key={stage} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.8 }} className="max-w-2xl text-center z-10">
         {currentStage.id === "letter" ? (
           <motion.div initial={{ rotateX: 90 }} animate={{ rotateX: 0 }} transition={{ duration: 1 }} className="glass rounded-2xl p-8 sm:p-12 text-left mb-8" style={{ transformStyle: "preserve-3d" }}>
-            <div className="text-sm text-white/40 mb-4">A letter from {sender.name}</div>
+            <div className="text-sm text-white/40 mb-4">A letter from {sender?.name || "Someone"}</div>
             <p className="text-lg sm:text-xl text-white/90 leading-relaxed whitespace-pre-line">{currentStage.text}</p>
-            <div className="mt-6 text-right text-white/40">— {sender.name}</div>
+            <div className="mt-6 text-right text-white/40">— {sender?.name || "Someone"}</div>
           </motion.div>
         ) : (
           <>
