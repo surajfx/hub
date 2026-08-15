@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suraj Edits</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  background:#080810;min-height:100vh;
+  font-family:'DM Sans',sans-serif;
+  display:flex;align-items:center;justify-content:center;
+  overflow-x:hidden;
+}
+
+.orb{position:fixed;border-radius:50%;filter:blur(100px);opacity:0.1;pointer-events:none;}
+.orb1{width:380px;height:380px;top:-100px;left:-120px;background:#a855f7;animation:o1 16s ease-in-out infinite alternate;}
+.orb2{width:320px;height:320px;bottom:-80px;right:-100px;background:#06b6d4;animation:o2 18s ease-in-out infinite alternate;}
+@keyframes o1{to{transform:translate(40px,50px)}}
+@keyframes o2{to{transform:translate(-40px,-50px)}}
+
+.wrap{
+  position:relative;z-index:1;
+  width:min(420px,92vw);
+  padding:28px 24px 36px;
+  background:rgba(10,10,22,0.92);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:30px;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 40px 80px rgba(0,0,0,0.6);
+  animation:cardIn 0.8s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes cardIn{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
+
+.header{display:flex;align-items:center;gap:16px;margin-bottom:24px;}
+.avatar-wrap{position:relative;flex-shrink:0;width:78px;height:78px;}
+.avatar-ring{
+  position:absolute;inset:-3px;border-radius:50%;
+  background:linear-gradient(135deg,#a855f7,#06b6d4,#f43f5e,#a855f7);
+  z-index:1;animation:spinRing 4s linear infinite;will-change:transform;
+}
+@keyframes spinRing{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.avatar-ring::after{content:'';position:absolute;inset:3px;border-radius:50%;background:#080810;}
+.avatar{position:absolute;inset:0;width:78px;height:78px;border-radius:50%;object-fit:cover;z-index:2;display:block;}
+
+.header-text{flex:1;}
+.badge{font-size:9.5px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:0.2em;color:rgba(255,255,255,0.28);text-transform:uppercase;margin-bottom:3px;}
+.name{font-family:'Syne',sans-serif;font-size:23px;font-weight:800;color:#fff;line-height:1.1;}
+.tagline{margin-top:5px;font-size:11.5px;color:rgba(255,255,255,0.42);font-weight:300;}
+
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent);margin:0 0 22px;}
+
+.links{display:flex;flex-direction:column;gap:13px;}
+
+.link-btn{
+  position:relative;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 18px;
+  border-radius:17px;border:1px solid transparent;
+  text-decoration:none;overflow:hidden;cursor:pointer;
+  transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;
+  animation:fadeUp 0.5s both;
+}
+.link-btn:nth-child(1){animation-delay:0.15s}
+.link-btn:nth-child(2){animation-delay:0.25s}
+.link-btn:nth-child(3){animation-delay:0.35s}
+.link-btn:hover{transform:translateY(-2px) scale(1.012);}
+.link-btn:active{transform:scale(0.98);}
+.link-btn::after{
+  content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.09),transparent);
+  transform:skewX(-18deg);transition:left 0.45s ease;
+}
+.link-btn:hover::after{left:160%;}
+
+.btn-left{display:flex;align-items:center;gap:14px;}
+.btn-logo{width:46px;height:46px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(255,255,255,0.1);}
+.btn-text{display:flex;flex-direction:column;gap:2px;}
+.btn-label{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff;}
+.btn-sub{font-size:11px;color:rgba(255,255,255,0.4);}
+.btn-arr{font-size:18px;color:rgba(255,255,255,0.35);transition:transform 0.18s,color 0.18s;}
+.link-btn:hover .btn-arr{transform:translateX(3px);color:#fff;}
+
+.btn-capcut{background:linear-gradient(135deg,rgba(0,0,0,0.35),rgba(20,20,20,0.15));border-color:rgba(255,255,255,0.12);box-shadow:0 3px 20px rgba(0,0,0,0.3);}
+.btn-capcut:hover{box-shadow:0 6px 34px rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.25);}
+
+.btn-prompts{background:linear-gradient(135deg,rgba(6,182,212,0.16),rgba(14,116,144,0.05));border-color:rgba(6,182,212,0.28);box-shadow:0 3px 20px rgba(6,182,212,0.08);}
+.btn-prompts:hover{box-shadow:0 6px 34px rgba(6,182,212,0.3);border-color:rgba(6,182,212,0.55);}
+
+.btn-templates{background:linear-gradient(135deg,rgba(168,85,247,0.16),rgba(124,58,237,0.05));border-color:rgba(168,85,247,0.28);box-shadow:0 3px 20px rgba(168,85,247,0.08);}
+.btn-templates:hover{box-shadow:0 6px 34px rgba(168,85,247,0.3);border-color:rgba(168,85,247,0.55);}
+
+.footer{margin-top:26px;text-align:center;font-size:11px;color:rgba(255,255,255,0.16);letter-spacing:0.06em;font-family:'Syne',sans-serif;}
+.footer span{background:linear-gradient(90deg,#a855f7,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<div class="wrap">
+  <div class="header">
+    <div class="avatar-wrap">
+      <div class="avatar-ring"></div>
+      <img class="avatar" src="https://i.postimg.cc/X7XNNK61/IMG-20250719-180719-544.webp" alt="Suraj Edits">
+    </div>
+    <div class="header-text">
+      <div class="badge">Creator Studio</div>
+      <div class="name">Suraj Edits</div>
+      <div class="tagline">🎁 Free Templates, AI Prompts & more!</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="links">
+
+    <!-- CapCut Pro -->
+    <a href="https://app.surajfx.in/" target="_blank" class="link-btn btn-capcut">
+      <div class="btn-left">
+        <img class="btn-logo" src="https://i.postimg.cc/76V5vm3s/images.png" alt="CapCut Pro">
+        <div class="btn-text">
+          <span class="btn-label">CapCut Pro</span>
+          <span class="btn-sub">app.surajfx.in</span>
+        </div>
+      </div>
+      <span class="btn-arr">→</span>
+    </a>
+
+    <!-- Prompts -->
+    <a href="https://prompts.surajfx.in/" target="_blank" class="link-btn btn-prompts">
+      <div class="btn-left">
+        <img class="btn-logo" src="https://i.postimg.cc/prv1YnXc/file-000000000ed0820892b49d3292461816.jpg" alt="Prompts">
+        <div class="btn-text">
+          <span class="btn-label">Prompts</span>
+          <span class="btn-sub">prompts.surajfx.in</span>
+        </div>
+      </div>
+      <span class="btn-arr">→</span>
+    </a>
+
+    <!-- Templates -->
+    <a href="https://templates.surajfx.in/" target="_blank" class="link-btn btn-templates">
+      <div class="btn-left">
+        <div class="btn-logo" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#a855f7,#7c3aed);">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="6" width="22" height="14" rx="2.5" fill="#e9d5ff"/>
+            <rect x="1" y="6" width="22" height="4" rx="2.5" fill="#fff"/>
+            <rect x="3.5" y="3.5" width="2.2" height="4" rx="1" fill="#c084fc"/>
+            <rect x="7.5" y="3.5" width="2.2" height="4" rx="1" fill="#c084fc"/>
+            <rect x="11.5" y="3.5" width="2.2" height="4" rx="1" fill="#c084fc"/>
+            <rect x="15.5" y="3.5" width="2.2" height="4" rx="1" fill="#c084fc"/>
+            <rect x="19.5" y="3.5" width="2.2" height="4" rx="1" fill="#c084fc"/>
+            <polygon points="9.5,12 9.5,18 16.5,15" fill="#7c3aed"/>
+          </svg>
+        </div>
+        <div class="btn-text">
+          <span class="btn-label">Templates</span>
+          <span class="btn-sub">templates.surajfx.in</span>
+        </div>
+      </div>
+      <span class="btn-arr">→</span>
+    </a>
+
+  </div>
+
+  <div class="footer">Powered by <span>Suraj Edits</span></div>
+</div>
+
+</body>
+</html>
