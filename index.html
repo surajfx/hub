@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 <!-- Open Graph / Telegram / WhatsApp / Facebook preview -->
 <meta property="og:title" content="🎁 Get Everything FREE Here">
 <meta property="og:description" content="CapCut Pro, AI Prompts & Templates — all in one place, 100% free.">
-<meta property="og:image" content="https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=1200&h=630&fit=crop">
+<meta property="og:image" content="https://i.postimg.cc/yd0j2qFY/og-banner-hub.png">
 <meta property="og:url" content="https://hub.surajfx.in/">
 <meta property="og:type" content="website">
 
@@ -17,7 +18,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="🎁 Get Everything FREE Here">
 <meta name="twitter:description" content="CapCut Pro, AI Prompts & Templates — all in one place, 100% free.">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=1200&h=630&fit=crop">
+<meta name="twitter:image" content="https://i.postimg.cc/yd0j2qFY/og-banner-hub.png">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -111,6 +112,19 @@ body{
 .footer span{background:linear-gradient(90deg,#a855f7,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* Smooth page-out transition — prevents white flash on navigation */
+html{background:#080810;}
+body{transition:opacity 0.25s ease;}
+body.leaving{opacity:0;}
+
+.page-fade{
+  position:fixed;inset:0;z-index:999;
+  background:#080810;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.28s ease;
+}
+.page-fade.active{opacity:1;pointer-events:all;}
 </style>
 </head>
 <body>
@@ -186,6 +200,30 @@ body{
 
   <div class="footer">Powered by <span>Suraj Edits</span></div>
 </div>
+
+<!-- Fade overlay to prevent white flash when navigating away -->
+<div class="page-fade" id="pageFade"></div>
+
+<script>
+  // Intercept link clicks -> fade to dark bg -> then navigate
+  document.querySelectorAll('a.link-btn').forEach(function(link){
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      const url = this.href;
+      const target = this.target;
+      const fade = document.getElementById('pageFade');
+      fade.classList.add('active');
+      setTimeout(function(){
+        if(target === '_blank'){
+          window.open(url, '_blank');
+          fade.classList.remove('active');
+        } else {
+          window.location.href = url;
+        }
+      }, 260);
+    });
+  });
+</script>
 
 </body>
 </html>
