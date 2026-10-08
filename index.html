@@ -20,14 +20,6 @@
       <nav class="desktop-nav">
         <a href="#explore">Explore Wishes</a>
         <a href="#favorites">Favorites <span id="favoriteCount" class="count-badge">0</span></a>
-        <a href="pricing.html">💎 Pricing</a>
-        <a href="login.html">🔐 Login / Sign Up</a>
-        <a class="menu-extra" href="profile.html">👤 Profile</a>
-        <a class="menu-extra" href="team.html">👥 Team</a>
-        <a class="menu-extra" href="privacy.html">🔒 Privacy Policy</a>
-        <a class="menu-extra" href="terms.html">📜 Terms &amp; Conditions</a>
-        <a class="menu-extra" href="refund.html">💰 Refund &amp; Cancellation</a>
-        <a class="menu-extra" href="contact.html">📩 Contact Us</a>
       </nav>
       <div class="header-actions">
         <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">☾</button>
@@ -86,18 +78,8 @@
     </main>
 
     <footer>
-      <div class="footer-main">
-        <span>© 2026 WishVerse</span>
-        <span>Made for meaningful moments.</span>
-      </div>
-      <div class="footer-links">
-        <a href="profile.html">Profile</a>
-        <a href="team.html">Team</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="refund.html">Refund</a>
-        <a href="contact.html">Contact</a>
-      </div>
+      <span>© 2026 WishVerse</span>
+      <span>Made for meaningful moments.</span>
     </footer>
   </div>
 
@@ -127,33 +109,9 @@
       <form id="wishForm">
         <label>From<input id="fromInput" required maxlength="40" placeholder="Your name"></label>
         <label>To<input id="toInput" required maxlength="40" placeholder="Their name"></label>
-
-        <div id="girlfriendExtra" class="girlfriend-extra hidden">
-          <p class="gf-section-title" id="gfNotesTitle">4 little memories <span class="optional">(shown behind each photo)</span></p>
-          <label>Memory note 1<textarea id="gfNote1" maxlength="140" rows="2"></textarea></label>
-          <label>Memory note 2<textarea id="gfNote2" maxlength="140" rows="2"></textarea></label>
-          <label>Memory note 3<textarea id="gfNote3" maxlength="140" rows="2"></textarea></label>
-          <label>Memory note 4<textarea id="gfNote4" maxlength="140" rows="2"></textarea></label>
-
-          <p class="gf-section-title" id="gfLetterTitle">the memory box letter</p>
-          <label>Letter<textarea id="gfBoxLetter" maxlength="300" rows="3"></textarea></label>
-
-          <div id="gfReasonsWrap">
-            <p class="gf-section-title">5 reasons (sealed envelopes)</p>
-            <label>Reason 1<input id="gfReason1" maxlength="100"></label>
-            <label>Reason 2<input id="gfReason2" maxlength="100"></label>
-            <label>Reason 3<input id="gfReason3" maxlength="100"></label>
-            <label>Reason 4<input id="gfReason4" maxlength="100"></label>
-            <label>Reason 5<input id="gfReason5" maxlength="100"></label>
-          </div>
-        </div>
         <label>Your message<textarea id="messageInput" required maxlength="500" rows="5" placeholder="Write something heartfelt..."></textarea><small id="messageExample" class="field-hint">Example: You make every ordinary day feel special. I am so lucky to have you in my life. ❤️</small></label>
         <label>Photos <span class="optional">(up to 4)</span><input id="imageInput" type="file" accept="image/*" multiple></label>
         <div id="uploadStatus" class="upload-status"></div>
-        <div id="gfCollagePicker" class="gf-collage-picker hidden">
-          <p class="gf-section-title">Final card · pick 2 photos for the ending collage</p>
-          <div id="gfCollageThumbs" class="gf-collage-thumbs"></div>
-        </div>
         <button class="btn btn-primary full-width" type="submit">Create & Save Wish ✦</button>
       </form>
       <div id="createdResult" class="created-result hidden">

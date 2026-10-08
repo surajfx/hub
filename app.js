@@ -44,7 +44,6 @@ const wishGrid = $("#wishGrid");
 const favoriteGrid = $("#favoriteGrid");
 const featuredGrid = $("#featuredGrid");
 const featuredIds = ["proposal","girlfriend","boyfriend","miss","sorry","birthday"];
-const CINEMATIC_CARDS = ["girlfriend","boyfriend","proposal","miss","birthday"];
 
 function categories() {
   return ["All", ...new Set(cards.map(c => c.category))];
@@ -122,60 +121,6 @@ function openCard(id) {
 
 function closeModal(id) { $(id).classList.add("hidden"); }
 
-const GF_DEFAULTS = {
-  notes: [
-    "Every little moment with you feels like this.",
-    "I keep coming back to this one in my head.",
-    "Small, silly, and completely ours.",
-    "You made an ordinary day feel like this."
-  ],
-  boxLetter: "Every little thing about you makes an ordinary day feel like a memory worth keeping. I just wanted you to know that.",
-  reasons: [
-    "Because you make every ordinary day feel like a good one.",
-    "Because you listen, even when I ramble about nothing.",
-    "Because your laugh is my favourite sound.",
-    "Because you believe in me even when I doubt myself.",
-    "Because being loved by you feels like home."
-  ]
-};
-const MISS_DEFAULTS = {
-  notes: [
-    'Every quiet moment, you cross my mind.',
-    'I wonder if you see the same moon tonight.',
-    'I still make two cups out of habit.',
-    ''
-  ],
-  boxLetter: "someone is missing you deeply right now.",
-  reasons: []
-};
-const BIRTHDAY_DEFAULTS = {
-  notes: [
-    'First Photo Together ❤️',
-    'The Day We Met ✨',
-    'Our Craziest Moment 😂',
-    "A Memory I'll Never Forget 🌸"
-  ],
-  boxLetter: "Thank you for being in my life.",
-  reasons: []
-};
-const PROPOSAL_DEFAULTS = {
-  notes: [
-    "I knew even back then I wanted forever with you.",
-    "This is one of my favourite memories of us.",
-    "Small moment, but I think about it often.",
-    "This is when I started imagining our future."
-  ],
-  boxLetter: "I've been carrying something for a while now, something I've been meaning to ask you.",
-  reasons: [
-    "Because I want forever, not just today.",
-    "Because you feel like home, wherever we are.",
-    "Because I want to build a life with you, not just share one.",
-    "Because every version of my future has you in it.",
-    "Because loving you is the easiest decision I have ever made."
-  ]
-};
-let gfCollageIdx = [];
-
 function openCustomize() {
   if (!selectedCard) selectedCard = cards[0];
   closeModal("#cardModal");
@@ -185,31 +130,8 @@ function openCustomize() {
   $("#messageInput").value = selectedCard.example;
   $("#messageInput").placeholder = selectedCard.formHint;
   $("#messageExample").textContent = `Example: ${selectedCard.example}`;
-  uploadedImageUrls = []; gfCollageIdx = [];
+  uploadedImageUrls = [];
   $("#uploadStatus").textContent = "";
-  const isGirlfriend = CINEMATIC_CARDS.includes(selectedCard.id);
-  $("#girlfriendExtra").classList.toggle("hidden", !isGirlfriend);
-  $("#gfCollagePicker").classList.add("hidden");
-  $("#gfCollageThumbs").innerHTML = "";
-  if (isGirlfriend) {
-    const isProposal = selectedCard.id === "proposal";
-    const isMiss = selectedCard.id === "miss";
-    const isBirthday = selectedCard.id === "birthday";
-    const d = isProposal ? PROPOSAL_DEFAULTS : isMiss ? MISS_DEFAULTS : isBirthday ? BIRTHDAY_DEFAULTS : GF_DEFAULTS;
-    d.notes.forEach((v,i)=>{ $(`#gfNote${i+1}`).value = v; });
-    $("#gfBoxLetter").value = d.boxLetter;
-    const noReasons = isProposal || isMiss || isBirthday;
-    $("#gfReasonsWrap").classList.toggle("hidden", noReasons);
-    if (!noReasons) d.reasons.forEach((v,i)=>{ $(`#gfReason${i+1}`).value = v; });
-    $("#gfNotesTitle").innerHTML = isProposal
-      ? `Gallery captions <span class="optional">(shown under each of your 4 photos)</span>`
-      : isMiss
-      ? `3 longing-letter messages <span class="optional">(4th field unused for this card)</span>`
-      : isBirthday
-      ? `4 memory captions <span class="optional">(a 5th is added automatically)</span>`
-      : `4 little memories <span class="optional">(shown behind each photo)</span>`;
-    $("#gfLetterTitle").textContent = isProposal ? "the ring box message" : isMiss ? "the opening message" : isBirthday ? "the memory capsule thank-you line" : "the memory box letter";
-  }
   $("#customizeModal").classList.remove("hidden");
 }
 
@@ -254,25 +176,7 @@ $("#imageInput").onchange = async e => {
   $("#uploadStatus").textContent = `Uploading ${files.length} photo${files.length>1?"s":""}...`;
   try { uploadedImageUrls = []; for (const file of files) { const url = await uploadToCloudinary(file); if (url) uploadedImageUrls.push(url); } $("#uploadStatus").textContent = uploadedImageUrls.length ? `${uploadedImageUrls.length} photo${uploadedImageUrls.length>1?"s":""} uploaded successfully.` : "Photos selected."; }
   catch { uploadedImageUrls = []; $("#uploadStatus").textContent = "Upload failed. You can continue without photos."; }
-  renderGfCollagePicker();
 };
-
-function renderGfCollagePicker(){
-  if (!selectedCard || !CINEMATIC_CARDS.includes(selectedCard.id)) return;
-  const wrap = $("#gfCollageThumbs");
-  if (!uploadedImageUrls.length) { $("#gfCollagePicker").classList.add("hidden"); wrap.innerHTML = ""; gfCollageIdx = []; return; }
-  if (!gfCollageIdx.length) gfCollageIdx = uploadedImageUrls.map((_,i)=>i).slice(0,2);
-  $("#gfCollagePicker").classList.remove("hidden");
-  wrap.innerHTML = uploadedImageUrls.map((url,i) =>
-    `<div class="gf-thumb${gfCollageIdx.includes(i)?" selected":""}" data-idx="${i}"><img src="${escapeHTML(url)}"><span class="gf-thumb-badge">✓</span></div>`
-  ).join("");
-  wrap.querySelectorAll(".gf-thumb").forEach(el => el.onclick = () => {
-    const idx = Number(el.dataset.idx);
-    if (gfCollageIdx.includes(idx)) { gfCollageIdx = gfCollageIdx.filter(i => i !== idx); }
-    else { if (gfCollageIdx.length >= 2) gfCollageIdx.shift(); gfCollageIdx.push(idx); }
-    renderGfCollagePicker();
-  });
-}
 
 $("#wishForm").onsubmit = async e => {
   e.preventDefault();
@@ -282,12 +186,6 @@ $("#wishForm").onsubmit = async e => {
     to: $("#toInput").value.trim(), message: $("#messageInput").value.trim(),
     imageUrl: uploadedImageUrls[0] || "", imageUrls: uploadedImageUrls, createdAt: firestoreApi.serverTimestamp()
   };
-  if (CINEMATIC_CARDS.includes(selectedCard.id)) {
-    payload.gfNotes = [1,2,3,4].map(i => $(`#gfNote${i}`).value.trim() || GF_DEFAULTS.notes[i-1]);
-    payload.gfBoxLetter = $("#gfBoxLetter").value.trim() || GF_DEFAULTS.boxLetter;
-    payload.gfReasons = [1,2,3,4,5].map(i => $(`#gfReason${i}`).value.trim() || GF_DEFAULTS.reasons[i-1]);
-    payload.gfCollage = (gfCollageIdx.length ? gfCollageIdx : [0,1]).map(i => uploadedImageUrls[i]).filter(Boolean);
-  }
   try {
     if (!firebaseReady || !db) {
       toast("Firebase is not connected. Check Firebase setup.");
@@ -363,37 +261,13 @@ function startAmbientParticles(card){
 
 function stopStatusRotation(){ if (statusInterval){ clearInterval(statusInterval); statusInterval = null; } }
 
-function renderGirlfriendExperience(w){
-  const to = encodeURIComponent(w.to || "You");
-  const from = encodeURIComponent(w.from || "Someone who loves you");
-  const msg = encodeURIComponent(w.message || "");
-  const photos = encodeURIComponent(getPhotos(w).join(","));
-  const notes = encodeURIComponent((w.gfNotes || []).join("|"));
-  const boxletter = encodeURIComponent(w.gfBoxLetter || "");
-  const reasons = encodeURIComponent((w.gfReasons || []).join("|"));
-  const collage = encodeURIComponent((w.gfCollage && w.gfCollage.length ? w.gfCollage : getPhotos(w).slice(0,2)).join(","));
-  const folder = `cards/${w.templateId}-experience/index.html`;
-  $("#sharedStage").innerHTML = `<iframe class="girlfriend-frame" src="${folder}?to=${to}&from=${from}&msg=${msg}&photos=${photos}&notes=${notes}&boxletter=${boxletter}&reasons=${reasons}&collage=${collage}" title="A little surprise" allow="autoplay"></iframe>`;
-}
-
 function showSharedExperience(wish, isDemo=false){
   sharedWish = wish; sharedStep = 0; sharedIsDemo = isDemo;
   const card = currentCard();
+  sharedSteps = buildSteps(card);
   document.body.classList.add("shared-mode");
   $("#sharedExperience").classList.remove("hidden");
   $("#sharedActions").classList.add("hidden");
-  const progressBar = document.querySelector(".shared-progress");
-  if (CINEMATIC_CARDS.includes(card.id)) {
-    if (progressBar) progressBar.classList.add("hidden");
-    $("#sharedExperience").classList.add("girlfriend-live");
-    $("#sharedExperience").classList.toggle("no-topbar", !isDemo);
-    applyTheme(card);
-    renderGirlfriendExperience(wish);
-    return;
-  }
-  $("#sharedExperience").classList.remove("girlfriend-live", "no-topbar");
-  if (progressBar) progressBar.classList.remove("hidden");
-  sharedSteps = buildSteps(card);
   applyTheme(card);
   startAmbientParticles(card);
   renderSharedStage();
@@ -474,7 +348,7 @@ function renderSharedStage(){
 
 function closeSharedExperience(){
   stopStatusRotation();
-  if (sharedIsDemo) { $("#sharedExperience").classList.add("hidden"); $("#sharedExperience").classList.remove("girlfriend-live"); $("#sharedActions").classList.add("hidden"); document.body.classList.remove("shared-mode"); return; }
+  if (sharedIsDemo) { $("#sharedExperience").classList.add("hidden"); $("#sharedActions").classList.add("hidden"); document.body.classList.remove("shared-mode"); return; }
   location.href = location.pathname;
 }
 $("#sharedBack").onclick = closeSharedExperience;
@@ -510,21 +384,9 @@ renderCards();
 // Mobile menu and theme controls
 const menuToggle = $("#menuToggle");
 if (menuToggle) {
-  const nav = document.querySelector(".desktop-nav");
   menuToggle.onclick = () => {
-    const open = nav?.classList.toggle("mobile-open");
-    menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
-    menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    menuToggle.textContent = open ? "×" : "☰";
+    document.querySelector(".desktop-nav")?.classList.toggle("mobile-open");
   };
-  nav?.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("mobile-open");
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.setAttribute("aria-label", "Open menu");
-      menuToggle.textContent = "☰";
-    });
-  });
 }
 
 (async () => {
