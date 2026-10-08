@@ -1,230 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎁 Get Everything FREE Here — Suraj Edits</title>
-<meta name="description" content="CapCut Pro, AI Prompts & Templates — all in one place, 100% free.">
-
-<!-- Open Graph / Telegram / WhatsApp / Facebook preview -->
-<meta property="og:title" content="🎁 Get Everything FREE Here">
-<meta property="og:description" content="CapCut Pro, AI Prompts & Templates — all in one place, 100% free.">
-<meta property="og:image" content="https://i.postimg.cc/hhRfwwb5/og-banner-hub.png">
-<meta property="og:image:width" content="1280">
-<meta property="og:image:height" content="720">
-<meta property="og:url" content="https://hub.surajfx.in/">
-<meta property="og:type" content="website">
-
-<!-- Twitter card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="🎁 Get Everything FREE Here">
-<meta name="twitter:description" content="CapCut Pro, AI Prompts & Templates — all in one place, 100% free.">
-<meta name="twitter:image" content="https://i.postimg.cc/hhRfwwb5/og-banner-hub.png">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-
-body{
-  background:#080810;min-height:100vh;
-  font-family:'DM Sans',sans-serif;
-  display:flex;align-items:center;justify-content:center;
-  overflow-x:hidden;
-}
-
-.orb{position:fixed;border-radius:50%;filter:blur(100px);opacity:0.1;pointer-events:none;}
-.orb1{width:380px;height:380px;top:-100px;left:-120px;background:#a855f7;animation:o1 16s ease-in-out infinite alternate;}
-.orb2{width:320px;height:320px;bottom:-80px;right:-100px;background:#06b6d4;animation:o2 18s ease-in-out infinite alternate;}
-@keyframes o1{to{transform:translate(40px,50px)}}
-@keyframes o2{to{transform:translate(-40px,-50px)}}
-
-.wrap{
-  position:relative;z-index:1;
-  width:min(420px,92vw);
-  padding:28px 24px 36px;
-  background:rgba(10,10,22,0.92);
-  border:1px solid rgba(255,255,255,0.07);
-  border-radius:30px;
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-  box-shadow:0 40px 80px rgba(0,0,0,0.6);
-  animation:cardIn 0.8s cubic-bezier(.22,1,.36,1) both;
-}
-@keyframes cardIn{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
-
-.header{display:flex;align-items:center;gap:16px;margin-bottom:24px;}
-.avatar-wrap{position:relative;flex-shrink:0;width:78px;height:78px;}
-.avatar-ring{
-  position:absolute;inset:-3px;border-radius:50%;
-  background:linear-gradient(135deg,#a855f7,#06b6d4,#f43f5e,#a855f7);
-  z-index:1;animation:spinRing 4s linear infinite;will-change:transform;
-}
-@keyframes spinRing{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-.avatar-ring::after{content:'';position:absolute;inset:3px;border-radius:50%;background:#080810;}
-.avatar{position:absolute;inset:0;width:78px;height:78px;border-radius:50%;object-fit:cover;z-index:2;display:block;}
-
-.header-text{flex:1;}
-.badge{font-size:9.5px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:0.2em;color:rgba(255,255,255,0.28);text-transform:uppercase;margin-bottom:3px;}
-.name{font-family:'Syne',sans-serif;font-size:23px;font-weight:800;color:#fff;line-height:1.1;}
-.tagline{margin-top:5px;font-size:11.5px;color:rgba(255,255,255,0.42);font-weight:300;}
-
-.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent);margin:0 0 22px;}
-
-.links{display:flex;flex-direction:column;gap:13px;}
-
-.link-btn{
-  position:relative;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:16px 18px;
-  border-radius:17px;border:1px solid transparent;
-  text-decoration:none;overflow:hidden;cursor:pointer;
-  transition:transform 0.2s cubic-bezier(.34,1.56,.64,1),box-shadow 0.2s;
-  animation:fadeUp 0.5s both;
-}
-.link-btn:nth-child(1){animation-delay:0.15s}
-.link-btn:nth-child(2){animation-delay:0.25s}
-.link-btn:nth-child(3){animation-delay:0.35s}
-.link-btn:hover{transform:translateY(-2px) scale(1.012);}
-.link-btn:active{transform:scale(0.98);}
-.link-btn::after{
-  content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.09),transparent);
-  transform:skewX(-18deg);transition:left 0.45s ease;
-}
-.link-btn:hover::after{left:160%;}
-
-.btn-left{display:flex;align-items:center;gap:14px;}
-.btn-logo{width:46px;height:46px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(255,255,255,0.1);}
-.btn-text{display:flex;flex-direction:column;gap:2px;}
-.btn-label{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff;}
-.btn-sub{font-size:11px;color:rgba(255,255,255,0.4);}
-.btn-arr{font-size:18px;color:rgba(255,255,255,0.35);transition:transform 0.18s,color 0.18s;}
-.link-btn:hover .btn-arr{transform:translateX(3px);color:#fff;}
-
-.btn-capcut{background:linear-gradient(135deg,rgba(0,0,0,0.35),rgba(20,20,20,0.15));border-color:rgba(255,255,255,0.12);box-shadow:0 3px 20px rgba(0,0,0,0.3);}
-.btn-capcut:hover{box-shadow:0 6px 34px rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.25);}
-
-.btn-prompts{background:linear-gradient(135deg,rgba(6,182,212,0.16),rgba(14,116,144,0.05));border-color:rgba(6,182,212,0.28);box-shadow:0 3px 20px rgba(6,182,212,0.08);}
-.btn-prompts:hover{box-shadow:0 6px 34px rgba(6,182,212,0.3);border-color:rgba(6,182,212,0.55);}
-
-.btn-templates{background:linear-gradient(135deg,rgba(168,85,247,0.16),rgba(124,58,237,0.05));border-color:rgba(168,85,247,0.28);box-shadow:0 3px 20px rgba(168,85,247,0.08);}
-.btn-templates:hover{box-shadow:0 6px 34px rgba(168,85,247,0.3);border-color:rgba(168,85,247,0.55);}
-
-.footer{margin-top:26px;text-align:center;font-size:11px;color:rgba(255,255,255,0.16);letter-spacing:0.06em;font-family:'Syne',sans-serif;}
-.footer span{background:linear-gradient(90deg,#a855f7,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-
-/* Smooth page-out transition — prevents white flash on navigation */
-html{background:#080810;}
-body{transition:opacity 0.25s ease;}
-body.leaving{opacity:0;}
-
-.page-fade{
-  position:fixed;inset:0;z-index:999;
-  background:#080810;
-  opacity:0;pointer-events:none;
-  transition:opacity 0.28s ease;
-}
-.page-fade.active{opacity:1;pointer-events:all;}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1020" />
+  <title>WishVerse — Beautiful Wishes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="app-shell">
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="WishVerse home">
+        <span class="brand-mark">✦</span>
+        <span>Wish<span>Verse</span></span>
+      </a>
+      <nav class="desktop-nav">
+        <a href="#explore">Explore Wishes</a>
+        <a href="#favorites">Favorites <span id="favoriteCount" class="count-badge">0</span></a>
+        <a href="pricing.html">💎 Pricing</a>
+        <a href="login.html">🔐 Login / Sign Up</a>
+        <a class="menu-extra" href="profile.html">👤 Profile</a>
+        <a class="menu-extra" href="team.html">👥 Team</a>
+        <a class="menu-extra" href="privacy.html">🔒 Privacy Policy</a>
+        <a class="menu-extra" href="terms.html">📜 Terms &amp; Conditions</a>
+        <a class="menu-extra" href="refund.html">💰 Refund &amp; Cancellation</a>
+        <a class="menu-extra" href="contact.html">📩 Contact Us</a>
+      </nav>
+      <div class="header-actions">
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">☾</button>
+        <button id="menuToggle" class="icon-btn mobile-only" aria-label="Open menu">☰</button>
+      </div>
+    </header>
 
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
+    <main>
+      <section class="hero">
+        <div class="eyebrow">A LITTLE PLACE FOR MEANINGFUL MOMENTS</div>
+        <h1>Create beautiful wishes for every special moment <span>♥</span></h1>
+        <p>Turn your feelings into a memorable digital wish. Choose a beautiful card, personalize every word, and share it with someone special.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#explore">Explore Wishes <b>→</b></a>
+          <button class="btn btn-secondary" id="heroCreate">Create Wish <b>✦</b></button>
+        </div>
+        <div class="trust-line"><i></i> Made for love, friendship and unforgettable moments</div>
+      </section>
 
-<div class="wrap">
-  <div class="header">
-    <div class="avatar-wrap">
-      <div class="avatar-ring"></div>
-      <img class="avatar" src="https://i.postimg.cc/X7XNNK61/IMG-20250719-180719-544.webp" alt="Suraj Edits">
-    </div>
-    <div class="header-text">
-      <div class="badge">Creator Studio</div>
-      <div class="name">Suraj Edits</div>
-      <div class="tagline">🎁 Free Templates, AI Prompts & more!</div>
+      <section id="featured" class="section featured-section">
+        <div class="section-heading">
+          <div><div class="eyebrow">WHAT ARE YOU CELEBRATING?</div><h2>Featured experiences</h2></div>
+        </div>
+        <div id="featuredGrid" class="featured-grid"></div>
+      </section>
+
+      <section id="explore" class="section">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">FIND YOUR MOMENT</div>
+            <h2>Choose a wish card</h2>
+          </div>
+          <div class="search-wrap">
+            <input id="searchInput" type="search" placeholder="Search wishes..." aria-label="Search wishes">
+          </div>
+        </div>
+        <div id="categoryChips" class="chips"></div>
+        <div id="wishGrid" class="wish-grid"></div>
+        <div id="emptyState" class="empty-state hidden">
+          <div>✦</div>
+          <h3>No wishes found</h3>
+          <p>Try another search or category.</p>
+        </div>
+      </section>
+
+      <section id="favorites" class="section favorites-section">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">YOUR COLLECTION</div>
+            <h2>Saved favorites</h2>
+          </div>
+        </div>
+        <div id="favoriteGrid" class="wish-grid"></div>
+        <p id="noFavorites" class="muted">Your favorite cards will appear here.</p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-main">
+        <span>© 2026 WishVerse</span>
+        <span>Made for meaningful moments.</span>
+      </div>
+      <div class="footer-links">
+        <a href="profile.html">Profile</a>
+        <a href="team.html">Team</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="refund.html">Refund</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </footer>
+  </div>
+
+  <div id="cardModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-panel">
+      <button class="modal-close" data-close-modal aria-label="Close">×</button>
+      <div id="modalPreview" class="modal-preview"></div>
+      <div class="modal-content">
+        <div class="eyebrow" id="modalCategory"></div>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+        <div class="modal-buttons">
+          <button id="customizeBtn" class="btn btn-primary">Customize Wish ✦</button>
+          <button id="demoBtn" class="btn btn-secondary">Live Demo</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="divider"></div>
+  <div id="customizeModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="customizeTitle">
+    <div class="modal-backdrop" data-close-customize></div>
+    <div class="modal-panel form-panel">
+      <button class="modal-close" data-close-customize aria-label="Close">×</button>
+      <div class="eyebrow">MAKE IT YOURS</div>
+      <h2 id="customizeTitle">Customize your wish</h2>
+      <form id="wishForm">
+        <label>From<input id="fromInput" required maxlength="40" placeholder="Your name"></label>
+        <label>To<input id="toInput" required maxlength="40" placeholder="Their name"></label>
 
-  <div class="links">
+        <div id="girlfriendExtra" class="girlfriend-extra hidden">
+          <p class="gf-section-title" id="gfNotesTitle">4 little memories <span class="optional">(shown behind each photo)</span></p>
+          <label>Memory note 1<textarea id="gfNote1" maxlength="140" rows="2"></textarea></label>
+          <label>Memory note 2<textarea id="gfNote2" maxlength="140" rows="2"></textarea></label>
+          <label>Memory note 3<textarea id="gfNote3" maxlength="140" rows="2"></textarea></label>
+          <label>Memory note 4<textarea id="gfNote4" maxlength="140" rows="2"></textarea></label>
 
-    <!-- CapCut Pro -->
-    <a href="https://app.surajfx.in/" target="_blank" class="link-btn btn-capcut">
-      <div class="btn-left">
-        <img class="btn-logo" src="https://i.postimg.cc/76V5vm3s/images.png" alt="CapCut Pro">
-        <div class="btn-text">
-          <span class="btn-label">CapCut Pro</span>
-          <span class="btn-sub">app.surajfx.in</span>
+          <p class="gf-section-title" id="gfLetterTitle">the memory box letter</p>
+          <label>Letter<textarea id="gfBoxLetter" maxlength="300" rows="3"></textarea></label>
+
+          <div id="gfReasonsWrap">
+            <p class="gf-section-title">5 reasons (sealed envelopes)</p>
+            <label>Reason 1<input id="gfReason1" maxlength="100"></label>
+            <label>Reason 2<input id="gfReason2" maxlength="100"></label>
+            <label>Reason 3<input id="gfReason3" maxlength="100"></label>
+            <label>Reason 4<input id="gfReason4" maxlength="100"></label>
+            <label>Reason 5<input id="gfReason5" maxlength="100"></label>
+          </div>
         </div>
+        <label>Your message<textarea id="messageInput" required maxlength="500" rows="5" placeholder="Write something heartfelt..."></textarea><small id="messageExample" class="field-hint">Example: You make every ordinary day feel special. I am so lucky to have you in my life. ❤️</small></label>
+        <label>Photos <span class="optional">(up to 4)</span><input id="imageInput" type="file" accept="image/*" multiple></label>
+        <div id="uploadStatus" class="upload-status"></div>
+        <div id="gfCollagePicker" class="gf-collage-picker hidden">
+          <p class="gf-section-title">Final card · pick 2 photos for the ending collage</p>
+          <div id="gfCollageThumbs" class="gf-collage-thumbs"></div>
+        </div>
+        <button class="btn btn-primary full-width" type="submit">Create & Save Wish ✦</button>
+      </form>
+      <div id="createdResult" class="created-result hidden">
+        <div class="success-icon">✓</div>
+        <h3>Your wish is ready!</h3>
+        <p>Copy the link and share your beautiful moment.</p>
+        <div class="share-row"><input id="shareLink" readonly><button id="copyLink" class="btn btn-secondary">Copy</button></div>
+        <button id="closeAfterCreate" class="btn btn-primary full-width">Done</button>
       </div>
-      <span class="btn-arr">→</span>
-    </a>
-
-    <!-- Prompts -->
-    <a href="https://prompts.surajfx.in/" target="_blank" class="link-btn btn-prompts">
-      <div class="btn-left">
-        <img class="btn-logo" src="https://i.postimg.cc/prv1YnXc/file-000000000ed0820892b49d3292461816.jpg" alt="Prompts">
-        <div class="btn-text">
-          <span class="btn-label">Prompts</span>
-          <span class="btn-sub">prompts.surajfx.in</span>
-        </div>
-      </div>
-      <span class="btn-arr">→</span>
-    </a>
-
-    <!-- Templates -->
-    <a href="https://templates.surajfx.in/" target="_blank" class="link-btn btn-templates">
-      <div class="btn-left">
-        <div class="btn-logo" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#a855f7,#7c3aed);">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="6" width="22" height="14" rx="2.5" fill="#e9d5ff"/>
-            <rect x="1" y="6" width="22" height="4" rx="2.5" fill="#fff"/>
-            <rect x="3.5" y="3.5" width="2.2" height="4" rx="1" fill="#c084fc"/>
-            <rect x="7.5" y="3.5" width="2.2" height="4" rx="1" fill="#c084fc"/>
-            <rect x="11.5" y="3.5" width="2.2" height="4" rx="1" fill="#c084fc"/>
-            <rect x="15.5" y="3.5" width="2.2" height="4" rx="1" fill="#c084fc"/>
-            <rect x="19.5" y="3.5" width="2.2" height="4" rx="1" fill="#c084fc"/>
-            <polygon points="9.5,12 9.5,18 16.5,15" fill="#7c3aed"/>
-          </svg>
-        </div>
-        <div class="btn-text">
-          <span class="btn-label">Templates</span>
-          <span class="btn-sub">templates.surajfx.in</span>
-        </div>
-      </div>
-      <span class="btn-arr">→</span>
-    </a>
-
+    </div>
   </div>
 
-  <div class="footer">Powered by <span>Suraj Edits</span></div>
-</div>
 
-<!-- Fade overlay to prevent white flash when navigating away -->
-<div class="page-fade" id="pageFade"></div>
+  <section id="sharedExperience" class="shared-experience hidden" aria-live="polite">
+    <div class="shared-topbar"><button id="sharedBack" class="shared-back">← Home</button><span>WishVerse ✦</span></div>
+    <div class="shared-progress"><div class="progress-fill"></div></div>
+    <div id="sharedStage" class="shared-stage"></div><div id="sharedActions" class="shared-actions hidden"><button id="downloadKeepsake" class="shared-cta download-cta">⇩ Download Keepsake</button><button id="watchAgain" class="shared-cta ghost-cta">↻ Watch Again</button><div class="made-with">✦ Made with WishVerse</div></div>
+  </section>
 
-<script>
-  // Intercept link clicks -> fade to dark bg -> then navigate
-  document.querySelectorAll('a.link-btn').forEach(function(link){
-    link.addEventListener('click', function(e){
-      e.preventDefault();
-      const url = this.href;
-      const target = this.target;
-      const fade = document.getElementById('pageFade');
-      fade.classList.add('active');
-      setTimeout(function(){
-        if(target === '_blank'){
-          window.open(url, '_blank');
-          fade.classList.remove('active');
-        } else {
-          window.location.href = url;
-        }
-      }, 260);
-    });
-  });
-</script>
-
+  <div id="toast" class="toast" role="status"></div>
+  <script type="module" src="app.js"></script>
 </body>
 </html>

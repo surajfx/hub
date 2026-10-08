@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /wishes/{wishId} {
+      allow read: if true;
+      allow create: if request.resource.data.templateId is string
+        && request.resource.data.from is string
+        && request.resource.data.to is string
+        && request.resource.data.message is string;
+      allow update, delete: if false;
+    }
+  }
+}
